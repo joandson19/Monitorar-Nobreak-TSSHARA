@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.0</version>
+    <date>2023-08-08T19:15:21Z</date>
+    <groups>
+        <group>
+            <uuid>775ec8162d2a43f6946e57f74c30bfa3</uuid>
+            <name>Nobreak</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <uuid>9bf8d0ef79cc4cd9bdbe9cbc34e5837c</uuid>
+            <template>Template Nobreak TS-SHARA</template>
+            <name>Template Nobreak TS-SHARA</name>
+            <groups>
+                <group>
+                    <name>Nobreak</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>7a202c1d3dd344b38fe10d6fdea01a54</uuid>
+                    <name>Carga da Bateria</name>
+                    <key>ups.battery.charge</key>
+                    <units>%</units>
+                    <triggers>
+                        <trigger>
+                            <uuid>9667fa7411eb48e7aeca2c04749a6cda</uuid>
+                            <expression>last(/Template Nobreak TS-SHARA/ups.battery.charge)&lt;=30</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>last(/Template Nobreak TS-SHARA/ups.battery.charge)&gt;60</recovery_expression>
+                            <name>{HOST.NAME} - Carga de Bateria</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>dc5a2419978b434a842cef1339207f1b</uuid>
+                    <name>Tensão de Bateria</name>
+                    <key>ups.battery.voltage</key>
+                    <units>volts</units>
+                    <triggers>
+                        <trigger>
+                            <uuid>37c35d245923493aa28b3df430519296</uuid>
+                            <expression>last(/Template Nobreak TS-SHARA/ups.battery.voltage)=0 or last(/Template Nobreak TS-SHARA/ups.battery.voltage)&lt;21</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>last(/Template Nobreak TS-SHARA/ups.battery.voltage)&lt;23</recovery_expression>
+                            <name>{HOST.NAME} - Tensão de Bateria</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>40d0bdc55c174708a64543876407e48e</uuid>
+                    <name>Frequência Entrada rede AC</name>
+                    <key>ups.input.frequency</key>
+                    <units>Hz</units>
+                </item>
+                <item>
+                    <uuid>628c289aa73149858ff8aba8d3b18734</uuid>
+                    <name>Tensão AC Entrada</name>
+                    <key>ups.input.voltage</key>
+                    <units>volts</units>
+                    <triggers>
+                        <trigger>
+                            <uuid>6ad4c20bd46b42889782972984dcc127</uuid>
+                            <expression>(last(/Template Nobreak TS-SHARA/ups.input.voltage)=0 or last(/Template Nobreak TS-SHARA/ups.input.voltage)&gt;240 or last(/Template Nobreak TS-SHARA/ups.input.voltage)&lt;110) and (last(/Template Nobreak TS-SHARA/ups.input.voltage)&gt;135 or
+last(/Template Nobreak TS-SHARA/ups.input.voltage)&lt;220) and
+last(/Template Nobreak TS-SHARA/ups.input.voltage)&gt;240</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>last(/Template Nobreak TS-SHARA/ups.input.voltage)&gt;=110 and last(/Template Nobreak TS-SHARA/ups.input.voltage)&lt;=135 or last(/Template Nobreak TS-SHARA/ups.input.voltage)&gt;=220 and last(/Template Nobreak TS-SHARA/ups.input.voltage)&lt;=240</recovery_expression>
+                            <name>{HOST.NAME} - Tensão de entrada AC</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>76f9a91356f94c6e8be30b210858d575</uuid>
+                    <name>Load</name>
+                    <key>ups.load</key>
+                </item>
+                <item>
+                    <uuid>8ac811ae26db4e4ba003239e183d5aa7</uuid>
+                    <name>Tensão AC Saída</name>
+                    <key>ups.output.voltage</key>
+                    <units>volts</units>
+                    <triggers>
+                        <trigger>
+                            <uuid>73c9ef9961bd4a65b0283cd9fee02c1a</uuid>
+                            <expression>last(/Template Nobreak TS-SHARA/ups.output.voltage)&lt;115 or last(/Template Nobreak TS-SHARA/ups.output.voltage)&gt;120</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>last(/Template Nobreak TS-SHARA/ups.output.voltage)&gt;115 and last(/Template Nobreak TS-SHARA/ups.output.voltage)&lt;120</recovery_expression>
+                            <name>{HOST.NAME} - Tensão de saída AC</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>efaed69dff674bec960b457f7158b0f3</uuid>
+                    <name>Conectividade da porta COM</name>
+                    <key>ups.serial.port.status</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <triggers>
+                        <trigger>
+                            <uuid>6531f6e6889346d5913f24e275563caa</uuid>
+                            <expression>last(/Template Nobreak TS-SHARA/ups.serial.port.status)=&quot;Offline&quot;</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>last(/Template Nobreak TS-SHARA/ups.serial.port.status)=&quot;Online&quot;</recovery_expression>
+                            <name>Conectividade com o {HOST.NAME}</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>429b05e870d64451bf965fb87a958042</uuid>
+                    <name>Temperatura</name>
+                    <key>ups.temperature</key>
+                    <units>ºc</units>
+                    <triggers>
+                        <trigger>
+                            <uuid>f1b8b1391d884c2dbb0fc88c619cad37</uuid>
+                            <expression>last(/Template Nobreak TS-SHARA/ups.temperature)&gt;=35</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>last(/Template Nobreak TS-SHARA/ups.temperature)&lt;=30</recovery_expression>
+                            <name>{HOST.NAME} - Temperatura</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <uuid>97890df68a094fb59d6da21fd48de799</uuid>
+            <name>Carga da Bateria</name>
+            <show_work_period>NO</show_work_period>
+            <graph_items>
+                <graph_item>
+                    <color>199C0D</color>
+                    <calc_fnc>MIN</calc_fnc>
+                    <item>
+                        <host>Template Nobreak TS-SHARA</host>
+                        <key>ups.battery.charge</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>0323760cd2854b50a4ef2c3ac2408158</uuid>
+            <name>Temperatura</name>
+            <graph_items>
+                <graph_item>
+                    <color>199C0D</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template Nobreak TS-SHARA</host>
+                        <key>ups.temperature</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>6f99824935a042db90d7045563cfcbe0</uuid>
+            <name>Tensão AC Entrada</name>
+            <graph_items>
+                <graph_item>
+                    <color>FF0000</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template Nobreak TS-SHARA</host>
+                        <key>ups.input.voltage</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>00FF00</color>
+                    <yaxisside>RIGHT</yaxisside>
+                    <calc_fnc>MAX</calc_fnc>
+                    <item>
+                        <host>Template Nobreak TS-SHARA</host>
+                        <key>ups.input.frequency</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>618d465e126f452fad32cce5e9eed90a</uuid>
+            <name>tensão AC saída</name>
+            <graph_items>
+                <graph_item>
+                    <color>199C0D</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template Nobreak TS-SHARA</host>
+                        <key>ups.output.voltage</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>f7a81a6522e2466fbcf38e70fcf61b00</uuid>
+            <name>Tensão de Bateria</name>
+            <graph_items>
+                <graph_item>
+                    <color>199C0D</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template Nobreak TS-SHARA</host>
+                        <key>ups.battery.voltage</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+</zabbix_export>
