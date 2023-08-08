@@ -73,6 +73,16 @@ ups.status: OL
 ups.temperature: 29.0
 ups.type: offline / line interactive
 ```
+### Cria o arquivo com os parametros para o zabbix
+Copie o arquivo userparameter_tssharaups2200.conf para a pasta /etc/zabbix/zabbix_agentd.d
 
-### phpsysinfo
-![ups](https://github.com/joandson19/Monitorar-Nobreak-TSSHARA/blob/master/ups.png?raw=true)
+### Importar o template 
+Importe o template Template_TS-SHARA-UPS-2200.xml para o seu zabbix
+
+### Criar o host
+1º Nome do host: Crie um host como o nome que quiser
+2º Templates: "Template_TS-SHARA-UPS-2200"
+3º Grupo: crie um novo ou atribua ao que existir
+4º Interfaces: Agente e endereço ip é o 127.0.0.1
+5º Salve e vá para checagem de graficos.
+
