@@ -1,4 +1,4 @@
-# Ubuntu 18.04 + Nobreak Ts shara USB
+# Ubuntu 18.04/Debian 10/11 + Nobreak Ts shara USB
 ![tsshara](https://github.com/joandson19/Monitorar-Nobreak-TSSHARA/blob/master/ts-shara-ups-2200.jpg?raw=true)
 
 
@@ -75,4 +75,4 @@ ups.type: offline / line interactive
 ```
 
 ### phpsysinfo
-![ups](https://github.com/rbernardes/tsshara-ubuntu-server/blob/master/ups.png?raw=true)
+![ups](https://github.com/joandson19/Monitorar-Nobreak-TSSHARA/blob/master/ups.png?raw=true)
