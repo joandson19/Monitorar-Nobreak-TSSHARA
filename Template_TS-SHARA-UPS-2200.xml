@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
-    <date>2023-08-08T19:15:21Z</date>
+    <date>2023-08-08T19:32:22Z</date>
     <groups>
         <group>
             <uuid>775ec8162d2a43f6946e57f74c30bfa3</uuid>
@@ -23,22 +23,14 @@
                     <uuid>7a202c1d3dd344b38fe10d6fdea01a54</uuid>
                     <name>Carga da Bateria</name>
                     <key>ups.battery.charge</key>
+                    <delay>3m</delay>
                     <units>%</units>
-                    <triggers>
-                        <trigger>
-                            <uuid>9667fa7411eb48e7aeca2c04749a6cda</uuid>
-                            <expression>last(/Template Nobreak TS-SHARA/ups.battery.charge)&lt;=30</expression>
-                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/Template Nobreak TS-SHARA/ups.battery.charge)&gt;60</recovery_expression>
-                            <name>{HOST.NAME} - Carga de Bateria</name>
-                            <priority>DISASTER</priority>
-                        </trigger>
-                    </triggers>
                 </item>
                 <item>
                     <uuid>dc5a2419978b434a842cef1339207f1b</uuid>
                     <name>Tensão de Bateria</name>
                     <key>ups.battery.voltage</key>
+                    <value_type>FLOAT</value_type>
                     <units>volts</units>
                     <triggers>
                         <trigger>
@@ -55,6 +47,7 @@
                     <uuid>40d0bdc55c174708a64543876407e48e</uuid>
                     <name>Frequência Entrada rede AC</name>
                     <key>ups.input.frequency</key>
+                    <delay>30m</delay>
                     <units>Hz</units>
                 </item>
                 <item>
@@ -84,6 +77,7 @@ last(/Template Nobreak TS-SHARA/ups.input.voltage)&gt;240</expression>
                     <uuid>8ac811ae26db4e4ba003239e183d5aa7</uuid>
                     <name>Tensão AC Saída</name>
                     <key>ups.output.voltage</key>
+                    <delay>5m</delay>
                     <units>volts</units>
                     <triggers>
                         <trigger>
@@ -117,6 +111,7 @@ last(/Template Nobreak TS-SHARA/ups.input.voltage)&gt;240</expression>
                     <uuid>429b05e870d64451bf965fb87a958042</uuid>
                     <name>Temperatura</name>
                     <key>ups.temperature</key>
+                    <delay>5m</delay>
                     <units>ºc</units>
                     <triggers>
                         <trigger>
@@ -132,6 +127,16 @@ last(/Template Nobreak TS-SHARA/ups.input.voltage)&gt;240</expression>
             </items>
         </template>
     </templates>
+    <triggers>
+        <trigger>
+            <uuid>9667fa7411eb48e7aeca2c04749a6cda</uuid>
+            <expression>last(/Template Nobreak TS-SHARA/ups.battery.charge)&lt;=30 and last(/Template Nobreak TS-SHARA/ups.input.voltage)&lt;90</expression>
+            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+            <recovery_expression>last(/Template Nobreak TS-SHARA/ups.battery.charge)&gt;60 or last(/Template Nobreak TS-SHARA/ups.input.voltage)&gt;110</recovery_expression>
+            <name>{HOST.NAME} - Carga de Bateria</name>
+            <priority>DISASTER</priority>
+        </trigger>
+    </triggers>
     <graphs>
         <graph>
             <uuid>97890df68a094fb59d6da21fd48de799</uuid>
