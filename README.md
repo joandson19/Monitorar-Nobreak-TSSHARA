@@ -1,5 +1,5 @@
 # Ubuntu 18.04/Debian 10/11 + Nobreak Ts shara USB
-![tsshara](https://github.com/joandson19/Monitorar-Nobreak-TSSHARA/blob/master/ts-shara-ups-2200.jpg?raw=true)
+![tsshara](https://github.com/joandson19/Monitorar-Nobreak-TSSHARA/blob/master/ts-shara-ups-2200.jpg?raw=true) ou ![tsshara](https://github.com/joandson19/Monitorar-Nobreak-TSSHARA/blob/master/ups.png?raw=true)
 
 
 ### Install required packages:
