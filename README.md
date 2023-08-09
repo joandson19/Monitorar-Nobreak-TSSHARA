@@ -25,6 +25,11 @@ EOF
 # echo "MODE=standalone" >>  /etc/nut/nut.conf
 ```
 
+### Adicionar o Usuário nut ao Grupo dialout
+```
+# sudo usermod -aG dialout nut
+```
+
 ### Testing
 ```
 # /lib/nut/blazer_ser -a ups
