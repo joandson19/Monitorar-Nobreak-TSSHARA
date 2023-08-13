@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
-    <date>2023-08-08T19:32:22Z</date>
+    <date>2023-08-13T14:36:13Z</date>
     <groups>
         <group>
             <uuid>775ec8162d2a43f6946e57f74c30bfa3</uuid>
@@ -54,6 +54,7 @@
                     <uuid>628c289aa73149858ff8aba8d3b18734</uuid>
                     <name>Tensão AC Entrada</name>
                     <key>ups.input.voltage</key>
+                    <delay>30s</delay>
                     <units>volts</units>
                     <triggers>
                         <trigger>
@@ -82,9 +83,9 @@ last(/Template Nobreak TS-SHARA/ups.input.voltage)&gt;240</expression>
                     <triggers>
                         <trigger>
                             <uuid>73c9ef9961bd4a65b0283cd9fee02c1a</uuid>
-                            <expression>last(/Template Nobreak TS-SHARA/ups.output.voltage)&lt;115 or last(/Template Nobreak TS-SHARA/ups.output.voltage)&gt;120</expression>
+                            <expression>last(/Template Nobreak TS-SHARA/ups.output.voltage)&lt;114 or last(/Template Nobreak TS-SHARA/ups.output.voltage)&gt;120</expression>
                             <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
-                            <recovery_expression>last(/Template Nobreak TS-SHARA/ups.output.voltage)&gt;115 and last(/Template Nobreak TS-SHARA/ups.output.voltage)&lt;120</recovery_expression>
+                            <recovery_expression>last(/Template Nobreak TS-SHARA/ups.output.voltage)&gt;114 and last(/Template Nobreak TS-SHARA/ups.output.voltage)&lt;120</recovery_expression>
                             <name>{HOST.NAME} - Tensão de saída AC</name>
                             <priority>HIGH</priority>
                         </trigger>
@@ -125,6 +126,139 @@ last(/Template Nobreak TS-SHARA/ups.input.voltage)&gt;240</expression>
                     </triggers>
                 </item>
             </items>
+            <dashboards>
+                <dashboard>
+                    <uuid>8510c4630ecd49798d7b0ca4b1288a2e</uuid>
+                    <name>Nobreak</name>
+                    <pages>
+                        <page>
+                            <widgets>
+                                <widget>
+                                    <type>ITEM</type>
+                                    <name>Carga de Bateria</name>
+                                    <y>2</y>
+                                    <width>4</width>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>show</name>
+                                            <value>2</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>show</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>ITEM</type>
+                                            <name>itemid</name>
+                                            <value>
+                                                <host>Template Nobreak TS-SHARA</host>
+                                                <key>ups.battery.charge</key>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>ITEM</type>
+                                    <name>Temperatura</name>
+                                    <y>4</y>
+                                    <width>4</width>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>show</name>
+                                            <value>2</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>show</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>ITEM</type>
+                                            <name>itemid</name>
+                                            <value>
+                                                <host>Template Nobreak TS-SHARA</host>
+                                                <key>ups.temperature</key>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>ITEM</type>
+                                    <name>Tensão de Bateria</name>
+                                    <width>4</width>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>show</name>
+                                            <value>2</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>show</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>ITEM</type>
+                                            <name>itemid</name>
+                                            <value>
+                                                <host>Template Nobreak TS-SHARA</host>
+                                                <key>ups.battery.voltage</key>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>GRAPH_CLASSIC</type>
+                                    <name>Tensão de Entrada</name>
+                                    <x>4</x>
+                                    <width>10</width>
+                                    <height>6</height>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>source_type</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>ITEM</type>
+                                            <name>itemid</name>
+                                            <value>
+                                                <host>Template Nobreak TS-SHARA</host>
+                                                <key>ups.input.voltage</key>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>GRAPH_CLASSIC</type>
+                                    <name>Tensão de Saída</name>
+                                    <x>14</x>
+                                    <width>10</width>
+                                    <height>6</height>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>source_type</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>ITEM</type>
+                                            <name>itemid</name>
+                                            <value>
+                                                <host>Template Nobreak TS-SHARA</host>
+                                                <key>ups.output.voltage</key>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                            </widgets>
+                        </page>
+                    </pages>
+                </dashboard>
+            </dashboards>
         </template>
     </templates>
     <triggers>
